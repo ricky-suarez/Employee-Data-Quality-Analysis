@@ -1,0 +1,1109 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html><head></head><body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+    
+    
+    
+    
+
+
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput">
+<h1>DAT-325 Module 7 Project 3<a rel="noopener" class="anchor-link" href="#DAT-325-Module-7-Project-3">&#182;</a></h1>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput">
+<h2>Instructions<a rel="noopener" class="anchor-link" href="#Instructions">&#182;</a></h2><p>In this project, you will upload the data file provided by the firm that is acquired by your company and perform some data profiling tasks to correct issues that you found in Project 2. After uploading the data set, you are provided two data profiling examples in steps 1 and 2, one for a quantitative variable and one for a categorical variable. You will run the code in these steps to understand data cleaning steps. You will then follow the guidelines provided to you to perform these profiling steps on variables specified in these guidelines. 
+You will also perform some transformations to join this data set with your company&#39;s data.</p>
+
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput">
+<h3>Upload data set<a rel="noopener" class="anchor-link" href="#Upload-data-set">&#182;</a></h3>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput">
+<p>Run the following lines of code to import Pandas and Matplotlib libraries and upload the data set.</p>
+
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&#160;[1]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor">
+     <div class="CodeMirror cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># import Pandas and Matplotlib libraries</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+
+
+<span class="c1"># upload firm&#39;s data</span>
+<span class="n">firm_data_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;DAT325_HR_Data_Firm.csv&#39;</span><span class="p">)</span>
+
+<span class="c1"># report rows and columns in the data set</span>
+<span class="n">firm_data_shape</span> <span class="o">=</span> <span class="n">firm_data_df</span><span class="o">.</span><span class="n">shape</span>
+<span class="n">firm_data_rows</span><span class="p">,</span> <span class="n">firm_data_cols</span> <span class="o">=</span> <span class="n">firm_data_shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">firm_data_shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;firm data:  rows=</span><span class="si">{</span><span class="n">firm_data_rows</span><span class="si">}</span><span class="s1">, cols=</span><span class="si">{</span><span class="n">firm_data_cols</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output">
+<pre>firm data:  rows=105, cols=8
+</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput">
+<h2>Step 1: Data Quality for Quantitative Variables (Age)<a rel="noopener" class="anchor-link" href="#Step-1:-Data-Quality-for-Quantitative-Variables-(Age)">&#182;</a></h2>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput">
+<h4>1-1 Missing Values<a rel="noopener" class="anchor-link" href="#1-1-Missing-Values">&#182;</a></h4><p>In this section of data quality checks, you will fill in the missing values for Age with the median value of Age. Run the code below and validate that the missing value has been replaced.</p>
+
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&#160;[2]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor">
+     <div class="CodeMirror cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># calculate median age</span>
+<span class="n">median_age</span> <span class="o">=</span> <span class="n">firm_data_df</span><span class="p">[</span><span class="s1">&#39;Age&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">median</span><span class="p">()</span>
+
+<span class="c1"># fill in median age for missing values using fillna function</span>
+<span class="n">firm_data_df</span><span class="p">[</span><span class="s1">&#39;Age&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">firm_data_df</span><span class="p">[</span><span class="s1">&#39;Age&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">median_age</span><span class="p">)</span>
+
+<span class="c1"># validate missing values are filled</span>
+<span class="n">missing_value_age</span> <span class="o">=</span> <span class="n">firm_data_df</span><span class="p">[</span><span class="s1">&#39;Age&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">any</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Age has missing values after filling in the median value? </span><span class="si">{</span><span class="n">missing_value_age</span><span class="si">}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="c1"># this step will print an Empty DataFrame if there are no missing values</span>
+<span class="n">filter_</span> <span class="o">=</span> <span class="n">firm_data_df</span><span class="p">[</span><span class="s1">&#39;Age&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">firm_data_df</span><span class="p">[</span><span class="n">filter_</span><span class="p">]</span><span class="o">.</span><span class="n">to_string</span><span class="p">())</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output">
+<pre>Age has missing values after filling in the median value? False
+
+Empty DataFrame
+Columns: [Employee_Name, DOB, Age, Marital_Status, Citizen_Desc, Hispanic_Latino, Race_Desc, Days_Employed]
+Index: []
+</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput">
+<h4>1-2 Incorrect Values<a rel="noopener" class="anchor-link" href="#1-2-Incorrect-Values">&#182;</a></h4><p>In this step, you will remove rows with negative value of Age. Run the code below and validate that the incorrect negative value has been removed.</p>
+
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&#160;[3]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor">
+     <div class="CodeMirror cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># remove rows with negative Age values. Assign to a new filtered dataframe</span>
+<span class="n">firm_data_filtered_df</span> <span class="o">=</span> <span class="n">firm_data_df</span><span class="p">[</span><span class="n">firm_data_df</span><span class="p">[</span><span class="s1">&#39;Age&#39;</span><span class="p">]</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+<span class="c1"># print stats for variable Age after removing negative values</span>
+<span class="n">stats_age</span> <span class="o">=</span> <span class="n">firm_data_filtered_df</span><span class="p">[</span><span class="s1">&#39;Age&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">stats Age </span><span class="se">\n</span><span class="si">{</span><span class="n">stats_age</span><span class="si">}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="c1"># this step will print an Empty DataFrame if there are no negative values</span>
+<span class="n">filter_</span> <span class="o">=</span> <span class="n">firm_data_filtered_df</span><span class="p">[</span><span class="s1">&#39;Age&#39;</span><span class="p">]</span><span class="o">&lt;</span><span class="mi">0</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">firm_data_filtered_df</span><span class="p">[</span><span class="n">filter_</span><span class="p">]</span><span class="o">.</span><span class="n">to_string</span><span class="p">())</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output">
+<pre>
+stats Age 
+count    104.000000
+mean      39.634615
+std       13.159262
+min       26.000000
+25%       31.750000
+50%       37.000000
+75%       44.000000
+max      139.000000
+Name: Age, dtype: float64
+
+Empty DataFrame
+Columns: [Employee_Name, DOB, Age, Marital_Status, Citizen_Desc, Hispanic_Latino, Race_Desc, Days_Employed]
+Index: []
+</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput">
+<h4>1-3 Outlier Values<a rel="noopener" class="anchor-link" href="#1-3-Outlier-Values">&#182;</a></h4><p>In this step, you will remove rows that contain outlier values of Age. Run the code below and validate that the outlier values have been removed.</p>
+
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&#160;[4]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor">
+     <div class="CodeMirror cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># remove Age outlier value based on threshold of 110. Assign to a new filtered dataframe</span>
+<span class="n">firm_data_filtered2_df</span> <span class="o">=</span> <span class="n">firm_data_filtered_df</span><span class="p">[</span><span class="n">firm_data_filtered_df</span><span class="p">[</span><span class="s1">&#39;Age&#39;</span><span class="p">]</span><span class="o">&lt;</span><span class="mi">110</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+<span class="c1"># print stats for variable Age after removing negative values</span>
+<span class="n">stats_age</span> <span class="o">=</span> <span class="n">firm_data_filtered2_df</span><span class="p">[</span><span class="s1">&#39;Age&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">stats Age </span><span class="se">\n</span><span class="si">{</span><span class="n">stats_age</span><span class="si">}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="c1"># validate and confirm the outlier has been removed</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">firm_data_filtered2_df</span><span class="p">[</span><span class="s1">&#39;Age&#39;</span><span class="p">],</span> <span class="n">bins</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Age&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Density&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output">
+<pre>
+stats Age 
+count    103.000000
+mean      38.669903
+std        8.782099
+min       26.000000
+25%       31.500000
+50%       37.000000
+75%       44.000000
+max       67.000000
+Name: Age, dtype: float64
+
+</pre>
+</div>
+</div>
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+
+
+<div class="jp-RenderedImage jp-OutputArea-output">
+<img src="javascript://"/>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput">
+<h2>Step 2: Data Quality for Categorical Variables (Marital Status)<a rel="noopener" class="anchor-link" href="#Step-2:-Data-Quality-for-Categorical-Variables-(Marital-Status)">&#182;</a></h2>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput">
+<h4>2-1 Missing Values<a rel="noopener" class="anchor-link" href="#2-1-Missing-Values">&#182;</a></h4><p>In this section of data quality checks, you will drop rows that have missing values for Marital Status. Run the code below and validate that rows with missing values have been removed.</p>
+
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&#160;[6]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor">
+     <div class="CodeMirror cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># remove rows with null values. Assign to a new filtered dataframe</span>
+<span class="n">firm_data_filtered3_df</span> <span class="o">=</span> <span class="n">firm_data_filtered2_df</span><span class="p">[</span><span class="o">~</span><span class="n">firm_data_filtered2_df</span><span class="p">[</span><span class="s1">&#39;Marital_Status&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isnull</span><span class="p">()]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+<span class="c1"># this step will print an Empty DataFrame if there are no missing values</span>
+<span class="n">filter_</span> <span class="o">=</span> <span class="n">firm_data_filtered3_df</span><span class="p">[</span><span class="s1">&#39;Marital_Status&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">firm_data_filtered3_df</span><span class="p">[</span><span class="n">filter_</span><span class="p">]</span><span class="o">.</span><span class="n">to_string</span><span class="p">())</span>
+<span class="n">firm_data_filtered3_df</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output">
+<pre>Empty DataFrame
+Columns: [Employee_Name, DOB, Age, Marital_Status, Citizen_Desc, Hispanic_Latino, Race_Desc, Days_Employed]
+Index: []
+</pre>
+</div>
+</div>
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[6]:</div>
+
+
+
+
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult">
+<pre>(99, 8)</pre>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput">
+<h4>2-2 Incorrect Values<a rel="noopener" class="anchor-link" href="#2-2-Incorrect-Values">&#182;</a></h4><p>In this step, you will use the unique function in Pandas library to find incorrect values in Marital Status. This function prints unique values contained in a variable. Run the step below, review the unique values and document any issues.</p>
+
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&#160;[8]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor">
+     <div class="CodeMirror cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># remove incorrect values. Assign to a new filtered dataframe</span>
+<span class="n">firm_data_filtered4_df</span> <span class="o">=</span> <span class="n">firm_data_filtered3_df</span><span class="p">[</span><span class="n">firm_data_filtered3_df</span><span class="p">[</span><span class="s1">&#39;Marital_Status&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="s1">&#39;NotMarried&#39;</span><span class="p">,</span><span class="s1">&#39;Married&#39;</span><span class="p">])]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+<span class="c1"># print unique values</span>
+<span class="n">mstatus_values</span> <span class="o">=</span> <span class="n">firm_data_filtered4_df</span><span class="p">[</span><span class="s1">&#39;Marital_Status&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Marital Status values: </span><span class="si">{</span><span class="n">mstatus_values</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">firm_data_filtered4_df</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output">
+<pre>Marital Status values: [&#39;NotMarried&#39; &#39;Married&#39;]
+</pre>
+</div>
+</div>
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[8]:</div>
+
+
+
+
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult">
+<pre>(98, 8)</pre>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput">
+<h2>Step 3: Data Quality (Quantitative Variable Assigned to You)<a rel="noopener" class="anchor-link" href="#Step-3:-Data-Quality-(Quantitative-Variable-Assigned-to-You)">&#182;</a></h2><p>Follow instructions provided in the guidelines and on right side of the screen to perform data profiling tasks for the quantitative variable assigned to you.</p>
+
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput">
+<h4>3-1 Missing Values<a rel="noopener" class="anchor-link" href="#3-1-Missing-Values">&#182;</a></h4><p>Write your code in the line below. Be sure to use filtered dataframe from the previous step (firm_data_filtered4_df) since it has corrections implemeted from all previous steps.</p>
+
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&#160;[10]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor">
+     <div class="CodeMirror cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1">#calculate median days Employed</span>
+<span class="n">median_days_employed</span> <span class="o">=</span> <span class="n">firm_data_filtered4_df</span><span class="p">[</span><span class="s1">&#39;Days_Employed&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">median</span><span class="p">()</span>
+
+<span class="c1">#fill in median Days Employed for missing values</span>
+<span class="n">firm_data_filtered4_df</span><span class="p">[</span><span class="s1">&#39;Days_Employed&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">firm_data_filtered4_df</span><span class="p">[</span><span class="s1">&#39;Days_Employed&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">fillna</span><span class="p">(</span><span class="n">median_days_employed</span><span class="p">)</span>
+
+<span class="c1">#validate missing values are filled</span>
+<span class="n">missing_value_days_employed</span> <span class="o">=</span> <span class="n">firm_data_filtered4_df</span><span class="p">[</span><span class="s1">&#39;Days_Employed&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">any</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Days_Employed has missing values after filling in the median value? </span><span class="si">{</span><span class="n">missing_value_days_employed</span><span class="si">}</span><span class="s1">/n&#39;</span><span class="p">)</span>
+
+<span class="c1">#this step will print an Empty DataFrame if there are no missing values</span>
+<span class="n">filter_</span> <span class="o">=</span> <span class="n">firm_data_filtered4_df</span><span class="p">[</span><span class="s1">&#39;Days_Employed&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">firm_data_filtered4_df</span><span class="p">[</span><span class="n">filter_</span><span class="p">]</span><span class="o">.</span><span class="n">to_string</span><span class="p">())</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output">
+<pre>Days_Employed has missing values after filling in the median value? False/n
+Empty DataFrame
+Columns: [Employee_Name, DOB, Age, Marital_Status, Citizen_Desc, Hispanic_Latino, Race_Desc, Days_Employed]
+Index: []
+</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput">
+<h4>3-2 Incorrect Values<a rel="noopener" class="anchor-link" href="#3-2-Incorrect-Values">&#182;</a></h4><p>Write your code in the line below. Be sure to use dataframe that has corrections from the previous step.</p>
+
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&#160;[15]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor">
+     <div class="CodeMirror cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># remove rows with negative Days_Employed values. Assign to a new filtered dataframe</span>
+<span class="n">firm_data_filtered5_df</span> <span class="o">=</span> <span class="n">firm_data_filtered4_df</span><span class="p">[</span><span class="n">firm_data_df</span><span class="p">[</span><span class="s1">&#39;Days_Employed&#39;</span><span class="p">]</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+<span class="c1"># print stats for variable Days_Employed after removing negative values</span>
+<span class="n">stats_days_employed</span> <span class="o">=</span> <span class="n">firm_data_filtered5_df</span><span class="p">[</span><span class="s1">&#39;Days_Employed&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">stats Days_Employed </span><span class="se">\n</span><span class="si">{</span><span class="n">stats_days_employed</span><span class="si">}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="c1"># this step will print an Empty DataFrame if there are no negative values</span>
+<span class="n">filter_</span> <span class="o">=</span> <span class="n">firm_data_filtered5_df</span><span class="p">[</span><span class="s1">&#39;Days_Employed&#39;</span><span class="p">]</span><span class="o">&lt;</span><span class="mi">0</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">firm_data_filtered5_df</span><span class="p">[</span><span class="n">filter_</span><span class="p">]</span><span class="o">.</span><span class="n">to_string</span><span class="p">())</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output">
+<pre>
+stats Days_Employed 
+count       96.000000
+mean      1835.979167
+std       5261.283522
+min          2.000000
+25%        731.500000
+50%       1153.500000
+75%       1887.750000
+max      52246.000000
+Name: Days_Employed, dtype: float64
+
+Empty DataFrame
+Columns: [Employee_Name, DOB, Age, Marital_Status, Citizen_Desc, Hispanic_Latino, Race_Desc, Days_Employed]
+Index: []
+</pre>
+</div>
+</div>
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output">
+<pre>C:\Users\Student\AppData\Local\Temp\ipykernel_6424\4272441068.py:2: UserWarning: Boolean Series key will be reindexed to match DataFrame index.
+  firm_data_filtered5_df = firm_data_filtered4_df[firm_data_df[&#39;Days_Employed&#39;]&gt;0].copy()
+</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput">
+<h4>3-3 Outlier Values<a rel="noopener" class="anchor-link" href="#3-3-Outlier-Values">&#182;</a></h4><p>Write your code in the line below. Be sure to use dataframe that has corrections from the previous step.</p>
+
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&#160;[20]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor">
+     <div class="CodeMirror cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># remove Days_Employed outlier value based on threshold of 5000. Assign to a new filtered dataframe</span>
+<span class="n">firm_data_filtered6_df</span> <span class="o">=</span> <span class="n">firm_data_filtered5_df</span><span class="p">[</span><span class="n">firm_data_filtered5_df</span><span class="p">[</span><span class="s1">&#39;Days_Employed&#39;</span><span class="p">]</span><span class="o">&lt;</span><span class="mi">5000</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+<span class="c1"># print stats for variable Days_Employed after removing negative values</span>
+<span class="n">stats_days_employed</span> <span class="o">=</span> <span class="n">firm_data_filtered6_df</span><span class="p">[</span><span class="s1">&#39;Days_Employed&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">stats Days_Employed </span><span class="se">\n</span><span class="si">{</span><span class="n">stats_days_employed</span><span class="si">}</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="c1"># validate and confirm the outlier has been removed</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">firm_data_filtered6_df</span><span class="p">[</span><span class="s1">&#39;Days_Employed&#39;</span><span class="p">],</span> <span class="n">bins</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">density</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Days_Employed&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Density&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output">
+<pre>
+stats Days_Employed 
+count      95.000000
+mean     1305.347368
+std       810.736122
+min         2.000000
+25%       731.000000
+50%      1153.000000
+75%      1839.000000
+max      3611.000000
+Name: Days_Employed, dtype: float64
+
+</pre>
+</div>
+</div>
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+
+
+<div class="jp-RenderedImage jp-OutputArea-output">
+<img src="javascript://"/>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput">
+<h2>Step 4: Data Quality (Categorical Variable Assigned to You)<a rel="noopener" class="anchor-link" href="#Step-4:-Data-Quality-(Categorical-Variable-Assigned-to-You)">&#182;</a></h2><p>Follow instructions provided in the guidelines and on right side of the screen to perform data profiling tasks for the categorical variable assigned to you.</p>
+
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput">
+<h4>4-1 Missing Values<a rel="noopener" class="anchor-link" href="#4-1-Missing-Values">&#182;</a></h4><p>Write your code in the line below. Be sure to use filtered dataframe from the previous step since it has corrections implemeted from all previous steps.</p>
+
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&#160;[23]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor">
+     <div class="CodeMirror cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># remove rows with null values. Assign to a new filtered dataframe</span>
+<span class="n">firm_data_filtered7_df</span> <span class="o">=</span> <span class="n">firm_data_filtered6_df</span><span class="p">[</span><span class="o">~</span><span class="n">firm_data_filtered6_df</span><span class="p">[</span><span class="s1">&#39;Citizen_Desc&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isnull</span><span class="p">()]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+<span class="c1"># this step will print an Empty DataFrame if there are no missing values</span>
+<span class="n">filter_</span> <span class="o">=</span> <span class="n">firm_data_filtered7_df</span><span class="p">[</span><span class="s1">&#39;Citizen_Desc&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">firm_data_filtered7_df</span><span class="p">[</span><span class="n">filter_</span><span class="p">]</span><span class="o">.</span><span class="n">to_string</span><span class="p">())</span>
+<span class="n">firm_data_filtered7_df</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output">
+<pre>Empty DataFrame
+Columns: [Employee_Name, DOB, Age, Marital_Status, Citizen_Desc, Hispanic_Latino, Race_Desc, Days_Employed]
+Index: []
+</pre>
+</div>
+</div>
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[23]:</div>
+
+
+
+
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult">
+<pre>(94, 8)</pre>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput">
+<h4>4-2 Incorrect Values<a rel="noopener" class="anchor-link" href="#4-2-Incorrect-Values">&#182;</a></h4><p>Write your code in the line below. Be sure to use dataframe that has corrections from the previous step.</p>
+
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&#160;[25]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor">
+     <div class="CodeMirror cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># remove incorrect values. Assign to a new filtered dataframe</span>
+<span class="n">firm_data_filtered8_df</span> <span class="o">=</span> <span class="n">firm_data_filtered7_df</span><span class="p">[</span><span class="n">firm_data_filtered7_df</span><span class="p">[</span><span class="s1">&#39;Citizen_Desc&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">([</span><span class="s1">&#39;US Citizen&#39;</span><span class="p">,</span><span class="s1">&#39;Eligible NonCitizen&#39;</span><span class="p">])]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+<span class="c1"># print unique values</span>
+<span class="n">citizen_values</span> <span class="o">=</span> <span class="n">firm_data_filtered8_df</span><span class="p">[</span><span class="s1">&#39;Citizen_Desc&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Citizen Desc values: </span><span class="si">{</span><span class="n">citizen_values</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="n">firm_data_filtered8_df</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output">
+<pre>Citizen Desc values: [&#39;US Citizen&#39; &#39;Eligible NonCitizen&#39;]
+</pre>
+</div>
+</div>
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[25]:</div>
+
+
+
+
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult">
+<pre>(93, 8)</pre>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput">
+<h2>Step 5: Transform and Join with Your Company Data<a rel="noopener" class="anchor-link" href="#Step-5:-Transform-and-Join-with-Your-Company-Data">&#182;</a></h2><p>Follow instructions provided in the guidelines and on right side of the screen to perform data transformations to join firm&#39;s data with your company data.</p>
+
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput">
+<h4>5-1 Upload Your Company’s Data<a rel="noopener" class="anchor-link" href="#5-1-Upload-Your-Company%E2%80%99s-Data">&#182;</a></h4><p>Start by uploading your company&#39;s data. Run the code below.</p>
+
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&#160;[26]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor">
+     <div class="CodeMirror cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># upload your company&#39;s data</span>
+<span class="n">your_company_data_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;DAT325_HR_Data_YourCompany.csv&#39;</span><span class="p">)</span>
+
+<span class="c1"># report rows and columns in the data set</span>
+<span class="n">your_company_shape</span> <span class="o">=</span> <span class="n">your_company_data_df</span><span class="o">.</span><span class="n">shape</span>
+<span class="n">your_company_rows</span><span class="p">,</span> <span class="n">your_company_cols</span> <span class="o">=</span> <span class="n">your_company_shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">your_company_shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;your company data:  rows=</span><span class="si">{</span><span class="n">your_company_rows</span><span class="si">}</span><span class="s1">, cols=</span><span class="si">{</span><span class="n">your_company_cols</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output">
+<pre>your company data:  rows=105, cols=17
+</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput">
+<h4>5-2 Data Transformation<a rel="noopener" class="anchor-link" href="#5-2-Data-Transformation">&#182;</a></h4><p>Follow instructions provided to perform appropriate Transformation to firm&#39;s data so it can be merged with company&#39;s data.</p>
+
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&#160;[29]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor">
+     <div class="CodeMirror cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># transform variable to create common variables in the two data sets </span>
+<span class="n">firm_data_filtered8_df</span><span class="p">[[</span><span class="s1">&#39;Last_Name&#39;</span><span class="p">,</span> <span class="s1">&#39;First_Name&#39;</span><span class="p">]]</span> <span class="o">=</span> <span class="n">firm_data_filtered8_df</span><span class="p">[</span><span class="s1">&#39;Employee_Name&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;,| &#39;</span><span class="p">,</span><span class="n">expand</span><span class="o">=</span><span class="kc">True</span><span class="p">)[[</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">]]</span>
+
+<span class="c1"># use merge function in pandas to perform the merge</span>
+<span class="c1"># fill in the appropriate variables as a list</span>
+<span class="n">merged_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">your_company_data_df</span><span class="p">,</span> <span class="n">firm_data_filtered8_df</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Last_Name&#39;</span><span class="p">,</span> <span class="s1">&#39;First_Name&#39;</span><span class="p">,</span> <span class="s1">&#39;DOB&#39;</span><span class="p">],</span> <span class="n">how</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">)</span>
+
+<span class="c1"># report rows and columns in the data</span>
+<span class="n">merged_shape</span> <span class="o">=</span> <span class="n">merged_df</span><span class="o">.</span><span class="n">shape</span>
+<span class="n">merged_rows</span><span class="p">,</span> <span class="n">merged_cols</span> <span class="o">=</span> <span class="n">merged_shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">merged_shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="c1"># report rows and columns in firm&#39;s data</span>
+<span class="n">firm_data_filtered8_shape</span> <span class="o">=</span> <span class="n">firm_data_filtered8_df</span><span class="o">.</span><span class="n">shape</span>
+<span class="n">firm_data_rows</span><span class="p">,</span> <span class="n">firm_data_cols</span> <span class="o">=</span> <span class="n">firm_data_filtered8_shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">firm_data_filtered8_shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;firm&#39;s data:  rows=</span><span class="si">{</span><span class="n">firm_data_rows</span><span class="si">}</span><span class="s2">, cols=</span><span class="si">{</span><span class="n">firm_data_cols</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;your company data:  rows=</span><span class="si">{</span><span class="n">your_company_rows</span><span class="si">}</span><span class="s2">, cols=</span><span class="si">{</span><span class="n">your_company_cols</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;merged data:  rows=</span><span class="si">{</span><span class="n">merged_rows</span><span class="si">}</span><span class="s2">, cols=</span><span class="si">{</span><span class="n">merged_cols</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+
+     </div>
+</div>
+</div>
+</div>
+
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+
+
+<div class="jp-OutputArea jp-Cell-outputArea">
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+<div class="jp-RenderedText jp-OutputArea-output">
+<pre>firm&#39;s data:  rows=93, cols=10
+your company data:  rows=105, cols=17
+merged data:  rows=105, cols=24
+</pre>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput">
+<h1>End of Project 3<a rel="noopener" class="anchor-link" href="#End-of-Project-3">&#182;</a></h1>
+</div>
+</div>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+<script type="module" src="https://s.brightspace.com/lib/bsi/2026.8.277/unbundled/mathjax.js"></script><script type="text/javascript">document.addEventListener('DOMContentLoaded', function() {
+			if (document.querySelector('math, .d2l-element, .d2l-cplus-layout') || /\$\$|\\\(|\\\[|\\begin{|\\ref{|\\eqref{/.test(document.body.innerHTML)) {
+				document.querySelectorAll('mspace[linebreak="newline"]').forEach(elm => {
+					elm.setAttribute('style', 'display: block; height: 0.5rem;');
+				});
+
+				document.querySelectorAll('math mmultiscripts > none').forEach(elm => {
+					const mrow = document.createElementNS('http://www.w3.org/1998/Math/MathML', 'mrow');
+					elm.replaceWith(mrow);
+				});
+
+				window.D2L.MathJax.loadMathJax({"renderLatex":false,"outputScale":1.5,"enableMML3Support":false});
+			}
+		});</script><script type="module" src="https://s.brightspace.com/lib/bsi/2026.8.277/unbundled/prism.js"></script><script type="text/javascript">document.addEventListener('DOMContentLoaded', function() {
+					document.querySelectorAll('.d2l-code').forEach(code => {
+						window.D2L.Prism.formatCodeElement(code);
+					});
+				});</script><script type="module" src="https://s.brightspace.com/lib/bsi/2026.8.277/unbundled/embeds.js"></script><script type="text/javascript">document.addEventListener('DOMContentLoaded', function() {
+					window.D2L.EmbedRenderer.renderEmbeds(document.body);
+				});</script></body></html>
